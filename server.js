@@ -634,9 +634,10 @@ app.post("/api/mensagens", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`\n✅ Servidor rodando em http://localhost:${PORT}`);
-  console.log(`   Provedor IA: ${AI_PROVIDER.toUpperCase()}`);
-  console.log(`   Dashboard:   http://localhost:${PORT}`);
-  console.log(`   Health:      http://localhost:${PORT}/api/health\n`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+  });
+}
+
+module.exports = app;
