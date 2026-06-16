@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leadfy — Buscador de Leads</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>Leadfy — Buscador de Leads</h1>
+      <p class="subtitle">Encontre leads, gerencie contatos, classifique oportunidades e exporte CSV</p>
+
+      <div class="metrics metrics-2rows">
+        <div class="metric metric-hot metric-highlight">
+          <div class="metric-label">Quentes</div><div class="metric-value" id="m-hot">0</div>
+        </div>
+        <div class="metric metric-warm metric-highlight">
+          <div class="metric-label">Mornos</div><div class="metric-value" id="m-warm">0</div>
+        </div>
+        <div class="metric metric-cold metric-highlight">
+          <div class="metric-label">Frios</div><div class="metric-value" id="m-cold">0</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Total</div><div class="metric-value" id="m-total">0</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">WhatsApp</div><div class="metric-value" id="m-wa">0</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">E-mail</div><div class="metric-value" id="m-em">0</div>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <button class="btn" id="btn-limpar" style="color:#c0392b;border-color:#e0c0c0">🗑 Limpar tudo</button>
+        <button class="btn" id="btn-exportar-csv">Exportar CSV</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="busca">Buscar com IA</button>
+        <button class="tab" data-tab="contatos">Contatos</button>
+        <button class="tab" data-tab="mensagens">Mensagens</button>
+        <button class="tab" data-tab="add">+ Adicionar</button>
+      </div>
+
+      <div class="panel active" id="panel-busca">
+        <div class="row">
+          <input id="cidade" placeholder="Cidade (ex: Uberaba)" />
+          <select id="tipo"></select>
+        </div>
+        <button class="btn btn-primary btn-block" id="btn-buscar">Buscar leads com IA</button>
+        <div id="busca-status"></div>
+        <div id="busca-resultado"></div>
+      </div>
+
+      <div class="panel" id="panel-contatos">
+        <div id="controles-contatos"></div>
+        <div id="lista-contatos"><div class="empty">Nenhum contato ainda.</div></div>
+      </div>
+
+      <div class="panel" id="panel-mensagens">
+        <div id="controles-mensagens"></div>
+        <div class="row mensagens-row" style="margin-top:8px"><select id="sel-contato"></select></div>
+        <button class="btn btn-primary btn-block" id="btn-gerar-msgs">⚡ Gerar mensagens + script</button>
+        <div id="msgs-resultado"></div>
+      </div>
+
+      <div class="panel" id="panel-add">
+        <div class="card">
+          <div class="form-grid">
+            <div class="form-group"><label class="form-label">Nome / empresa</label><input id="f-nome" placeholder="Ex: Corridas Uberaba" /></div>
+            <div class="form-group"><label class="form-label">Tipo</label><select id="f-tipo"></select></div>
+            <div class="form-group"><label class="form-label">Atividade principal</label><input id="f-evento" placeholder="Ex: Meia Maratona do Triângulo" /></div>
+            <div class="form-group"><label class="form-label">WhatsApp</label><input id="f-wa" placeholder="34 99999-0000" /></div>
+            <div class="form-group"><label class="form-label">E-mail</label><input id="f-email" placeholder="contato@empresa.com.br" /></div>
+            <div class="form-group"><label class="form-label">Instagram</label><input id="f-ig" placeholder="@empresa" /></div>
+            <div class="form-group"><label class="form-label">Cidade</label><input id="f-cidade" placeholder="Uberaba - MG" /></div>
+            <div class="form-group"><label class="form-label">Score</label><input id="f-score" type="number" min="0" max="100" placeholder="Ex: 72" /></div>
+          </div>
+          <div class="form-group form-group-bottom"><label class="form-label">Observações</label><input id="f-obs" placeholder="Ex: negócio local com boa recorrência" /></div>
+          <button class="btn btn-primary btn-block" id="btn-adicionar">Adicionar contato</button>
+        </div>
+      </div>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>
