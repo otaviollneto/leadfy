@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 // ─── CONFIGURAÇÃO: escolha o provedor de IA ───────────────────────────────────
@@ -115,7 +116,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static("public"));
+const publicPath = path.join(__dirname, "public");
+
+app.use(express.static(publicPath));
 
 const TIPOS_LEADS = [
   // Principais
@@ -632,6 +635,15 @@ app.post("/api/mensagens", async (req, res) => {
     console.error("[mensagens]", err.message);
     res.status(500).json({ error: err.message });
   }
+});
+
+app.get("/", function (_req, res) {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
+
+app.get("*", function (req, res, next) {
+  if (req.path.startsWith("/api/")) return next();
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 if (require.main === module) {
